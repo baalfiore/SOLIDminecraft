@@ -1,4 +1,5 @@
 import Tool, Item
+import ItemTypes
 
 if __name__ =="__main__":
     print("Starting ... ")
@@ -6,9 +7,10 @@ if __name__ =="__main__":
     pAxe = Tool.PickAxe("PickAxe", True, 12.97, "Tool used for mining rocks", 100)
     pAxeName = pAxe._toolName
 
-    blueberry = Item.Fruit("Blueberry", 1, 2)
-    raspberry = Item.Fruit("Raspberry",1, 2)
-    apple = Item.Fruit("Apple", 3, 8)
+    blueberry = Item.Fruit("Blueberry", 1)
+    raspberry = Item.Fruit("Raspberry",1)
+    apple = Item.Fruit("Apple", 3)
 
     print(f"Found {pAxeName}")
     print(f"Found {apple.itemName}")
+    print(f"printing item types {apple.itemTypes}")

@@ -4,6 +4,7 @@ class Item(object):
     def __init__(self, itemName):
         self._itemName = itemName
         self.type = None
+        #self.itemTypes = []
     
     @property
     def itemName(self):
@@ -15,20 +16,24 @@ class Item(object):
 
     @property
     def itemTypes(self):
-        return self._ItemTypes
+        if self.itemTypes == None:
+            print("Empty list!")
+        else:
+            return self._itemTypes
 
     @itemTypes.setter
     def itemTypes(self, val):
-        self._itemTypes = val
-
+        self._itemTypes.append(val)
+    
 class Food(Item):
     def __init__(self, itemName:str):
-        self._I = Item.__init__(self,itemName)
-        self._itemtypes = ItemType.HARVESTABLE | ItemType.THROWABLE | ItemType.PLANTABLE
+        Item.__init__(Item,itemName)
+        self._itemTypes = [ItemType.CONSUMABLE, ItemType.THROWABLE] 
+        Item.itemTypes = self._itemTypes
         self._charges = 0
-
+    
     def consume(self):
-        print(f"Throwing {super()._itemName}")
+        print(f"Eating {super()._itemName}")
 
     @property
     def charges(self):
@@ -45,7 +50,7 @@ class Seed(Item):
         self._stageLimit = stageLimit
         self._fullYield = 0
         self._currYield = 0
-        self._itemtypes = ItemType.HARVESTABLE | ItemType.THROWABLE | ItemType.CONSUMABLE | ItemType.PLANTABLE
+        self._itemtypes = [ItemType.HARVESTABLE , ItemType.THROWABLE , ItemType.CONSUMABLE , ItemType.PLANTABLE]
 
     def plant_seed(self):
         print("Planting Seed")
@@ -73,12 +78,13 @@ class Seed(Item):
             print("Plant has came to fruition!")
 
 class Fruit(Food):
-    def __init__(self, itemName:str, bites:int, stageLimit:int):
-        self.F = Food.__init__(self, itemName)
-        #print(f"{itemName}")
+    def __init__(self, itemName:str, bites:int):
+        super().__init__(itemName)
         self._usesLeft = bites
-        self.S = Seed.__init__( self, itemName, stageLimit)
-        self._itemtypes = ItemType.HARVESTABLE | ItemType.CONSUMABLE
+        Item.itemTypes.append(ItemType.HARVESTABLE)
+        #Food.itemTypes = Food.itemTypes.append(ItemType.HARVESTABLE)
+    
+        #self._itemtypes = ItemType.HARVESTABLE | ItemType.CONSUMABLE
+
     def acquire_seed(self):
         return Seed
-
