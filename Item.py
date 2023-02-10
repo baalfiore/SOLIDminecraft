@@ -4,7 +4,6 @@ class Item(object):
     def __init__(self, itemName):
         self._itemName = itemName
         self.type = None
-        #self.itemTypes = []
     
     @property
     def itemName(self):
@@ -20,6 +19,11 @@ class Item(object):
             print("Empty list!")
         else:
             return self._itemTypes
+
+    def listAllItemTypes(self):
+        for i in self.itemTypes:
+            print(i.name)
+
 
     @itemTypes.setter
     def itemTypes(self, val):

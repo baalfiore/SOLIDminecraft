@@ -13,4 +13,5 @@ if __name__ =="__main__":
 
     print(f"Found {pAxeName}")
     print(f"Found {apple.itemName}")
-    print(f"printing item types {apple.itemTypes}")
+    #print(f"printing item types {apple.itemTypes}")
+    apple.listAllItemTypes()
