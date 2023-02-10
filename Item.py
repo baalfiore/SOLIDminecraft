@@ -31,7 +31,7 @@ class Item(object):
     
 class Food(Item):
     def __init__(self, itemName:str):
-        Item.__init__(Item,itemName)
+        super(Food, self).__init__(Item,itemName)
         self._itemTypes = [ItemType.CONSUMABLE, ItemType.THROWABLE] 
         Item.itemTypes = self._itemTypes
         self._charges = 0
@@ -81,14 +81,11 @@ class Seed(Item):
         else:
             print("Plant has came to fruition!")
 
-class Fruit(Food):
+class Fruit(Food, Seed):
     def __init__(self, itemName:str, bites:int):
-        super().__init__(itemName)
+        super(Fruit, self ).__init__(itemName)
         self._usesLeft = bites
         Item.itemTypes.append(ItemType.HARVESTABLE)
-        #Food.itemTypes = Food.itemTypes.append(ItemType.HARVESTABLE)
-    
-        #self._itemtypes = ItemType.HARVESTABLE | ItemType.CONSUMABLE
 
     def acquire_seed(self):
         return Seed
