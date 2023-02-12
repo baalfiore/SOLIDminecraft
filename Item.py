@@ -52,11 +52,10 @@ class Seed(Item):
     def __init__(self, itemName: str, stageLimit: int):
         print("Initializing Seed")
         super(Seed,self).__init__(itemName)
-        """  self._stages = 0
+        self._stages = 0
         self._stageLimit = stageLimit
         self._fullYield = 0
-        self._currYield = 0 """
-        #self._itemtypes = [ItemType.HARVESTABLE , ItemType.THROWABLE , ItemType.CONSUMABLE , ItemType.PLANTABLE]
+        self._currYield = 0 
 
     def plant_seed(self):
         print("Planting Sseed")
