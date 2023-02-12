@@ -31,7 +31,8 @@ class Item(object):
     
 class Food(Item):
     def __init__(self, itemName:str):
-        super(Food, self).__init__(Item,itemName)
+        print("Initializing food")
+        super().__init__(itemName)
         self._itemTypes = [ItemType.CONSUMABLE, ItemType.THROWABLE] 
         Item.itemTypes = self._itemTypes
         self._charges = 0
@@ -49,15 +50,16 @@ class Food(Item):
 
 class Seed(Item):
     def __init__(self, itemName: str, stageLimit: int):
-        self._I = Item.__init__(self, itemName)
-        self._stages = 0
+        print("Initializing Seed")
+        super(Seed,self).__init__(itemName)
+        """  self._stages = 0
         self._stageLimit = stageLimit
         self._fullYield = 0
-        self._currYield = 0
-        self._itemtypes = [ItemType.HARVESTABLE , ItemType.THROWABLE , ItemType.CONSUMABLE , ItemType.PLANTABLE]
+        self._currYield = 0 """
+        #self._itemtypes = [ItemType.HARVESTABLE , ItemType.THROWABLE , ItemType.CONSUMABLE , ItemType.PLANTABLE]
 
     def plant_seed(self):
-        print("Planting Seed")
+        print("Planting Sseed")
 
     @property
     def currYield(self):
@@ -81,11 +83,22 @@ class Seed(Item):
         else:
             print("Plant has came to fruition!")
 
-class Fruit(Food, Seed):
-    def __init__(self, itemName:str, bites:int):
-        super(Fruit, self ).__init__(itemName)
+class Fruit(Food):
+    def __init__(self, itemName:str, bites:int, seeds: int):
+        Food.__init__(self, itemName=itemName)
         self._usesLeft = bites
+        self._seeds = seeds
         Item.itemTypes.append(ItemType.HARVESTABLE)
 
     def acquire_seed(self):
-        return Seed
+        seedList = []
+        for seed in range(0, self._seeds):
+            seed = Seed(itemName=self.itemName, stageLimit=4)
+            seedList.append(seed)
+        return seedList 
+    
+    def bite():
+        if bites != 0:
+            bites = bites -1
+        else:
+            return False
